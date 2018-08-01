@@ -8,7 +8,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>boot-community-demo-api</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>Community Demo API</name>
     <description>API Module For Customized Broadleaf Commerce Site</description>
