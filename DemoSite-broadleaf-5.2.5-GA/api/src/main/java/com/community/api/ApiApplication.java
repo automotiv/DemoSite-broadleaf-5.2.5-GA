@@ -4,6 +4,7 @@ import org.broadleafcommerce.common.config.EnableBroadleafSiteRootAutoConfigurat
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -11,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-public class ApiApplication {
+public class ApiApplication extends SpringBootServletInitializer{
 
     @Configuration
     @EnableBroadleafSiteRootAutoConfiguration
