@@ -42,7 +42,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        String password = UUID.randomUUID().toString();
+        String password = "broadleafapi";
         String user = "broadleafapi";
         auth.inMemoryAuthentication()
             .withUser(user)
@@ -84,12 +84,6 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
                 .requires(ChannelDecisionManagerImpl.ANY_CHANNEL)
             .and()
             .addFilterAfter(apiCustomerStateFilter(), RememberMeAuthenticationFilter.class);
-        http.authorizeRequests().antMatchers("/api/**/webjars/**",
-                "/api/**/images/favicon-*",
-                "/api/**/jhawtcode/**",
-                "/api/**/swagger-ui.html",
-                "/api/**/swagger-resources/**",
-                "/api/**/v2/api-docs").permitAll();
     }
     
     @Bean
