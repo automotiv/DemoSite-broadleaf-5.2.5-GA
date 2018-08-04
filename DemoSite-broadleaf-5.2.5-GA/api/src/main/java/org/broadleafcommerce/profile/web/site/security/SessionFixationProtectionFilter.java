@@ -51,7 +51,7 @@ import javax.servlet.http.HttpSession;
  * @author Andre Azzolini (apazzolini)
  */
 @Component("blSessionFixationProtectionFilter")
-public class APISessionFixationProtectionFilter extends GenericFilterBean {
+public class SessionFixationProtectionFilter extends GenericFilterBean {
 
     private static final Log LOG = LogFactory.getLog(SessionFixationProtectionFilter.class);
 
