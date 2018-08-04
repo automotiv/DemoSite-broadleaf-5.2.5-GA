@@ -1,8 +1,11 @@
 package com.community.api.configuration;
 
+import javax.servlet.Filter;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.broadleafcommerce.profile.web.core.security.RestApiCustomerStateFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,10 +19,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.access.channel.ChannelDecisionManagerImpl;
 import org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter;
-
-import java.util.UUID;
-
-import javax.servlet.Filter;
 
 /**
  * @author Elbert Bautista (elbertbautista)
@@ -40,7 +39,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManager();
     }
     
-    @Override
+    /*@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         String password = "broadleafapi";
         String user = "broadleafapi";
@@ -49,7 +48,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
             .password(password)
             .roles("USER");
         LOG.info(String.format("%n%n%nBasic auth configured with user %s and password: %s%n%n%n", user, password));
-    }
+    }*/
     
    @Override
    public void configure(WebSecurity web) throws Exception {
@@ -60,6 +59,11 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
                "/api/**/swagger-ui.html",
                "/api/**/swagger-resources/**",
                "/api/**/v2/api-docs");
+   }
+   
+   @Autowired
+   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+       auth.inMemoryAuthentication().withUser("broadleafapi").password("broadleafapi").roles("USER");
    }
     
     @Override
