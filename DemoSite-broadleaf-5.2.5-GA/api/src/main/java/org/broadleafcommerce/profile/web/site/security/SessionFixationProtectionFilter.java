@@ -87,9 +87,20 @@ public class SessionFixationProtectionFilter extends GenericFilterBean {
             LOG.info("activeIdCookieValue :: " + activeIdCookieValue + "  decryptedActiveIdValue :: " + decryptedActiveIdValue);
 
             if (!activeIdSessionValue.equals(decryptedActiveIdValue)) {
-                //abortUser(request, response);
-                LOG.info("Session has been terminated. ActiveID did not match expected value.");
-                //return;
+                // If there is no session (session == null) then there isn't anything to worry about
+
+                // The request is secure, but we haven't set a session fixation protection cookie yet
+                String token;
+                try {
+                    token = RandomGenerator.generateRandomId("SHA1PRNG", 32);
+                } catch (NoSuchAlgorithmException e) {
+                    throw new ServletException(e);
+                }
+
+                String encryptedActiveIdValue = encryptionModule.encrypt(token);
+
+                session.setAttribute(SESSION_ATTR, token);
+                cookieUtils.setCookieValue(response, SessionFixationProtectionCookie.COOKIE_NAME, encryptedActiveIdValue, "/", -1, true);
             }
         } else if (request.isSecure() && session != null) {
             // If there is no session (session == null) then there isn't anything to worry about
