@@ -84,6 +84,12 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
                 .requires(ChannelDecisionManagerImpl.ANY_CHANNEL)
             .and()
             .addFilterAfter(apiCustomerStateFilter(), RememberMeAuthenticationFilter.class);
+        http.authorizeRequests().antMatchers("/api/**/webjars/**",
+                "/api/**/images/favicon-*",
+                "/api/**/jhawtcode/**",
+                "/api/**/swagger-ui.html",
+                "/api/**/swagger-resources/**",
+                "/api/**/v2/api-docs").permitAll();
     }
     
     @Bean
