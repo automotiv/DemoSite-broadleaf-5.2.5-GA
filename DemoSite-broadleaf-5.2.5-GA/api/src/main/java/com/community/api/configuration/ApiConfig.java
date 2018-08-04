@@ -1,11 +1,14 @@
 package com.community.api.configuration;
 
 import org.apache.catalina.connector.Connector;
+import org.broadleafcommerce.profile.web.site.security.SessionFixationProtectionFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -17,6 +20,8 @@ import com.community.core.config.StringFactoryBean;
  */
 @Configuration
 @Import({CoreConfig.class, ApiSecurityConfig.class})
+@ComponentScan(basePackages = "com.concretepage",
+excludeFilters = @Filter(SessionFixationProtectionFilter.class))
 public class ApiConfig {
 
     @Bean

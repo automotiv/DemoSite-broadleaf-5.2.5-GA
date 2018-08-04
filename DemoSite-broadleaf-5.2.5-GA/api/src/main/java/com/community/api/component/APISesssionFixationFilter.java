@@ -18,9 +18,7 @@ import org.broadleafcommerce.common.security.RandomGenerator;
 import org.broadleafcommerce.profile.web.site.security.SessionFixationProtectionCookie;
 import org.broadleafcommerce.profile.web.site.security.SessionFixationProtectionFilter;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 
-@Component("blSessionFixationProtectionFilter")
 public class APISesssionFixationFilter extends SessionFixationProtectionFilter {
 
 	private static final Log LOG = LogFactory.getLog(APISesssionFixationFilter.class);
