@@ -98,8 +98,6 @@ public class RestApiMvcConfiguration extends BroadleafRestApiMvcConfiguration {
                       .apis(RequestHandlerSelectors.any())
                       .paths(PathSelectors.any())
                       .build()
-                    .securitySchemes(Arrays.asList(new BasicAuth("basicAuth")))
-                    .securityContexts(Arrays.asList(securityContext()))
                     .useDefaultResponseMessages(false)
                     .apiInfo(apiInfo());
         }
