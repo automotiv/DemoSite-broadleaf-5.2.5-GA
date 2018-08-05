@@ -99,7 +99,7 @@ public class SessionFixationProtectionFilter extends GenericFilterBean {
                 String encryptedActiveIdValue = encryptionModule.encrypt(token);
 
                 session.setAttribute(SESSION_ATTR, token);
-                cookieUtils.setCookieValue(response, SessionFixationProtectionCookie.COOKIE_NAME, encryptedActiveIdValue, "/", -1, true);
+                cookieUtils.setCookieValue(response, SessionFixationProtectionCookie.COOKIE_NAME, encryptedActiveIdValue, "/", -1, false);
             }
         } else if (request.isSecure() && session != null) {
             // If there is no session (session == null) then there isn't anything to worry about
