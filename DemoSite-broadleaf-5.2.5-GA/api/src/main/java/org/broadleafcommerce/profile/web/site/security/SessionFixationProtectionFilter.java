@@ -50,9 +50,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Andre Azzolini (apazzolini)
  */
-public class APISessionFixationProtectionFilter extends GenericFilterBean {
+public class SessionFixationProtectionFilter extends GenericFilterBean {
 
-    private static final Log LOG = LogFactory.getLog(APISessionFixationProtectionFilter.class);
+    private static final Log LOG = LogFactory.getLog(SessionFixationProtectionFilter.class);
 
     protected static final String SESSION_ATTR = "SFP-ActiveID";
 
